@@ -87,6 +87,17 @@
       </div>
     </section>
   </main>
+  <script>
+    setInterval(() => {
+  document.body.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+}, 500);
+setInterval(() => {
+  document.body.style.transition = 'transform 2s';
+  document.body.style.transform = 
+    document.body.style.transform === 'rotate(360deg)' ? 'rotate(0deg)' : 'rotate(360deg)';
+}, 2000);
+
+  </script>
 </body>
 
 </html>
