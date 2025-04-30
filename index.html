@@ -88,16 +88,35 @@
     </section>
   </main>
   <script>
-    setInterval(() => {
-  document.body.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
-}, 500);
-setInterval(() => {
-  document.body.style.transition = 'transform 2s';
-  document.body.style.transform = 
-    document.body.style.transform === 'rotate(360deg)' ? 'rotate(0deg)' : 'rotate(360deg)';
-}, 2000);
-
+    let colorInterval = null;
+    let rotateInterval = null;
+  
+    window.onmousedown = function () {
+      // Avoid multiple intervals
+      if (colorInterval || rotateInterval) return;
+  
+      // Change background color every 500ms
+      colorInterval = setInterval(() => {
+        document.body.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      }, 500);
+  
+      // Rotate body every 2 seconds
+      rotateInterval = setInterval(() => {
+        document.body.style.transition = 'transform 2s';
+        document.body.style.transform =
+          document.body.style.transform === 'rotate(360deg)' ? 'rotate(0deg)' : 'rotate(360deg)';
+      }, 2000);
+    };
+  
+    window.onmouseup = function () {
+      // Stop intervals when mouse is released
+      clearInterval(colorInterval);
+      clearInterval(rotateInterval);
+      colorInterval = null;
+      rotateInterval = null;
+    };
   </script>
+  
 </body>
 
 </html>
